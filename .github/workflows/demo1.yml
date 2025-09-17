@@ -1,34 +1,41 @@
-name: Events Demo 1
-on: 
-  pull_request:
-    types: 
-      - opened
-  workflow_dispatch:
+name: Deploy website
+on:
   push:
     branches:
       - main
-      - dev
-      - 'dev-*' # Cubre todas las ramas que empiecen con "dev-": dev-new dev-this-is-new
-      - 'feat/**' # feat/new feat/new/button
-      # push / pull-request tienen su tipo de action por parth, permite hacer cambios si alguna ruta específica 
-      # O ignorar por ejemplo el push si sólo archivos en workflows son afectados.
-    paths-ignore: 
-      - '.github/workflows/*'
-    # si sólo es path entonces el workflow se activará si pasa alguno de sos cambios
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Output event data
-        run: echo "${{ toJSON(github.event) }}"
       - name: Get code
         uses: actions/checkout@v3
       - name: Install dependencies
         run: npm ci
+      - name: Lint code
+        run: npm run lint
       - name: Test code
         run: npm run test
-      - name: Build code
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm ci
+      - name: Build website
         run: npm run build
-      - name: Deploy project
+        # Para almacenar nuevos artifacts, sólo necesitamos agregar otro step:
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-files
+          path: |
+            dist
+            package.json
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
         run: echo "Deploying..."
-
