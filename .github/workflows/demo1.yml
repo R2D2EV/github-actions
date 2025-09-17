@@ -9,6 +9,17 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
+    # Se debe definir antes el step para el cache de la instalción:
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        # Se requiere todos los archivos que se necesitaran en cache.
+        with:
+          path: ~/.npm
+        # Además necesitamos de un indicador para recuperar la cache en el futuro y recrear esa carpeta
+        # Pero también indicará si debemos descarta, y crearla nuevamente pues las dependencias han cambiado.
+        # Para utilizarlos en los demás jobs bastsa con copiar y pegar en ellos.
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+
       - name: Install dependencies
         run: npm ci
       - name: Test code
@@ -23,6 +34,11 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm ci
       - name: Build website
