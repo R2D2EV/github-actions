@@ -4,6 +4,17 @@ on:
     types: 
       - opened
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - dev
+      - 'dev-*' # Cubre todas las ramas que empiecen con "dev-": dev-new dev-this-is-new
+      - 'feat/**' # feat/new feat/new/button
+      # push / pull-request tienen su tipo de action por parth, permite hacer cambios si alguna ruta específica 
+      # O ignorar por ejemplo el push si sólo archivos en workflows son afectados.
+    paths-ignore: 
+      - '.github/workflows/*'
+    # si sólo es path entonces el workflow se activará si pasa alguno de sos cambios
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -20,4 +31,4 @@ jobs:
         run: npm run build
       - name: Deploy project
         run: echo "Deploying..."
-        
+
