@@ -16,6 +16,10 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
+    # Para que el output esté disponible para otros trabajos debemos añadir (2):
+    outputs:
+        # Este es el parámetro con el que se podrá acceder más adelante, la var depende de ti.
+      script-file: ${{ steps.publish.outputs.script-file }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -23,6 +27,10 @@ jobs:
         run: npm ci
       - name: Build website
         run: npm run build
+        # Para que los outputs puedan ser utilizados en posteriores jobs (1):
+      - name: Publish JS filename
+        id: publish
+        run: find dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'
         # Para almacenar nuevos artifacts, sólo necesitamos agregar otro step:
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
@@ -43,5 +51,9 @@ jobs:
           name: dist-files
       - name: Output contents
         run: ls
+        # Para utilizar el output (3):
+      - name: Output filename
+        run: echo "{{ needs.build.outputs.script-file }}""
+
       - name: Deploy
         run: echo "Deploying..."
