@@ -2,7 +2,7 @@ name: Deployment
 on:
   push:
     branches:
-      - main
+      # - main
       - dev
 # Para asignar variables de entorno:
 env: 
@@ -12,8 +12,12 @@ jobs:
     # También se pueden asignar variables de entorno a jobs o steps
     env: 
       MONGODB_CLUSTER_ADDRESS: clusterName
-      MONGODB_USERNAME: userName
-      MONGODB_PASSWORD: password
+      # Sin usar Secrets
+      # MONGODB_USERNAME: userName
+      # MONGODB_PASSWORD: password
+      # Usando Secrets
+      MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
+      MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
       PORT: 8000
     runs-on: ubuntu-latest
     steps:
