@@ -33,8 +33,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Test code
+        id: run-tests
         run: npm run test
       - name: Upload test report
+      # Se requiere agregar  una función especial: failure() && para que cuando falle haga el fin, en caso contrario no lo hará
+        if: failure() && steps.run-tests.outcome == 'failure' 
         uses: actions/upload-artifact@v3
         with:
           name: test-report
