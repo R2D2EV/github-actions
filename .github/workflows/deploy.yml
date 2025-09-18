@@ -2,17 +2,19 @@ name: Deployment
 on:
   push:
     branches:
-      # - main
+      - main
       - dev
 # Para asignar variables de entorno:
 env: 
   MONGODB_DB_NAME: gh-demo
 jobs:
   test:
+    # Para referirnos al "Environment" que hemos creado en GitHub (1) que puede agregarse o no:
+    environment: testing
     # También se pueden asignar variables de entorno a jobs o steps
     env: 
       MONGODB_CLUSTER_ADDRESS: clusterName
-      # Sin usar Secrets
+      # Usando env sin secrests
       # MONGODB_USERNAME: userName
       # MONGODB_PASSWORD: password
       # Usando Secrets
