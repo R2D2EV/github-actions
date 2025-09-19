@@ -4,10 +4,19 @@ jobs:
   build:
     continue-on-error: true
     strategy:
+        # Se pueden ejecutar en paralelo con dos versiones del SO, node v, ... todas las combinaciones posibles
       matrix:
         node-version: [16, 17, 18]
         operating-system: [ubuntu-latest, windows-latest]
-        # Se pueden ejecutar en paralelo con dos versiones del SO, node v, ... todas las combinaciones posibles
+        # Si se requiere una combinación especial, se puede añadir con include
+        include: 
+            - node-version: 15
+            - operating-system: ubuntu-latest
+        # También excluir
+        exclude:
+            - node-version: 17
+            - operating-system: windows-latest
+
     runs-on: ${{ matrix.operating-system }}
     steps: 
       - name: Get code
