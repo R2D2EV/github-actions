@@ -1,0 +1,9 @@
+name: Reusable Deploy
+# Estp nos permite llamar este desde otros flujos de trabajo.
+on: workflow_call
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output information
+        run: echo "Deploying & uploading... "
