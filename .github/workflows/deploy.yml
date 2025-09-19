@@ -15,11 +15,20 @@ jobs:
     container:
       image: node:16
     env:
-      MONGODB_CONNECTION_PROTOCOL: mongodb+srv
-      MONGODB_CLUSTER_ADDRESS: cluster0.ntrwp.mongodb.net
+      MONGODB_CONNECTION_PROTOCOL: mongodb
+      MONGODB_CLUSTER_ADDRESS: 127.0.0.1:27017
       MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
       MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
       PORT: 8080
+      # CAAS
+    services:
+      mongodb: 
+        image: mongo
+        ports:
+          -27017:27017
+        env:
+          MONGO_INITDB_ROOT_USERNAME: root 
+          MONGO_INITDB_ROOT_PASSWORD: password
     steps:
       - name: Get Code
         uses: actions/checkout@v3
