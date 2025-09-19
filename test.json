@@ -1,23 +1,113 @@
 {
-  "numTotalTestSuites": 1,
-  "numPassedTestSuites": 0,
-  "numFailedTestSuites": 1,
+  "numTotalTestSuites": 7,
+  "numPassedTestSuites": 4,
+  "numFailedTestSuites": 3,
   "numPendingTestSuites": 0,
-  "numTotalTests": 0,
-  "numPassedTests": 0,
-  "numFailedTests": 0,
+  "numTotalTests": 4,
+  "numPassedTests": 2,
+  "numFailedTests": 2,
   "numPendingTests": 0,
   "numTodoTests": 0,
-  "startTime": 1662469084119,
+  "startTime": 1758260661718,
   "success": false,
   "testResults": [
     {
       "assertionResults": [],
-      "startTime": 1662469084119,
-      "endTime": 1662469084119,
+      "startTime": 1758260661718,
+      "endTime": 1758260661718,
       "status": "passed",
-      "message": "\u001b[0m\u001b[0m\n\u001b[0m\u001b[4m/Users/max/development/teaching/gh-flow/src/components/HelpBox.jsx\u001b[24m\u001b[0m\n\u001b[0m  \u001b[2m5:20\u001b[22m  \u001b[31merror\u001b[39m  'title' is missing in props validation  \u001b[2mreact/prop-types\u001b[22m\u001b[0m\n\u001b[0m  \u001b[2m5:27\u001b[22m  \u001b[31merror\u001b[39m  'text' is missing in props validation   \u001b[2mreact/prop-types\u001b[22m\u001b[0m\n\u001b[0m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m✖ 2 problems (2 errors, 0 warnings)\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m\u001b[22m\u001b[39m\u001b[0m",
-      "name": "/Users/max/development/teaching/gh-flow/src/components/MainContent.test.jsx"
+      "message": "[vite-node] Failed to load @playwright/test",
+      "name": "C:/Users/artyr/Documents/GitHub/github-actions/DockerRepository/tests/events-api.spec.js"
+    },
+    {
+      "assertionResults": [],
+      "startTime": 1758260661718,
+      "endTime": 1758260661718,
+      "status": "passed",
+      "message": "[vite-node] Failed to load prop-types",
+      "name": "C:/Users/artyr/Documents/GitHub/github-actions/DockerRepository/src/components/MainContent.test.jsx"
+    },
+    {
+      "assertionResults": [],
+      "startTime": 1758260661718,
+      "endTime": 1758260661718,
+      "status": "passed",
+      "message": "[vite-node] Failed to load prop-types",
+      "name": "C:/Users/artyr/Documents/GitHub/github-actions/src/components/MainContent.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "MainContent"
+          ],
+          "fullName": " MainContent should render a button",
+          "status": "passed",
+          "title": "should render a button",
+          "duration": 107,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "MainContent"
+          ],
+          "fullName": " MainContent should show the help area after clicking the button",
+          "status": "passed",
+          "title": "should show the help area after clicking the button",
+          "duration": 92,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1758260665699,
+      "endTime": 1758260665898,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/artyr/Documents/GitHub/github-actions/WebPageRepository_1/src/components/MainContent.test.jsx"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "MainContent"
+          ],
+          "fullName": " MainContent should render a button",
+          "status": "failed",
+          "title": "should render a button",
+          "duration": 34,
+          "failureMessages": [
+            "Cannot read properties of null (reading 'useState')"
+          ],
+          "location": {
+            "line": 14,
+            "column": 27
+          }
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "MainContent"
+          ],
+          "fullName": " MainContent should show the help area after clicking the button",
+          "status": "failed",
+          "title": "should show the help area after clicking the button",
+          "duration": 7,
+          "failureMessages": [
+            "Cannot read properties of null (reading 'useState')"
+          ],
+          "location": {
+            "line": 22,
+            "column": 27
+          }
+        }
+      ],
+      "startTime": 1758260665825,
+      "endTime": 1758260665866,
+      "status": "failed",
+      "message": "",
+      "name": "C:/Users/artyr/Documents/GitHub/github-actions/WebPageRepository_2/src/components/MainContent.test.jsx"
     }
   ]
 }
