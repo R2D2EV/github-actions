@@ -11,8 +11,5 @@ runs:
         key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
     - name: Install dependencies
       if: steps.cache.outputs.cache-hit != 'true'
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
       run: npm ci
       shell: bash
