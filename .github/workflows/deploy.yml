@@ -70,8 +70,9 @@ jobs:
       - name: Output contents
         run: ls
       - name: Deploy site
-  # Agregando Action de AWS S3
-        uses: ./.github/actions/deploy-s3-javascript
+  # Agregando Action de AWS S3 c/ JS o Docker-Python
+        # uses: ./.github/actions/deploy-s3-javascript
+        uses: ./.github/actions/deploy-s3-docker
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
