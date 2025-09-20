@@ -1,7 +1,7 @@
 // Ejecutar en esta raiz  npm install @actions/core @actions/github @actions/exec
-const core = require('@actions/core')
-const github = require('@actions/github')
-const exec = require('@actions/exec')
+import * as core from '@actions/core';
+import * as github from '@actions/github';
+import * as exec from '@actions/exec';
 
 
 function run() {
